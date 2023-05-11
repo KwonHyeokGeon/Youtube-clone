@@ -1,0 +1,147 @@
+@mixin text($size, $weight, $color) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}
+
+.mainHome {
+    max-width: 1680px;
+    margin-left: 240px;
+    margin-top: 56px;
+    overflow: hidden;
+
+    .headline-container {
+        width: 100%;
+        border-bottom: $border;
+        background-color: #fff;
+
+        .headline-wrap {
+            padding-left: calc((100% - 1284px) / 2);
+
+            .headline {
+                display: flex;
+                align-items: center;
+                font-weight: normal;
+                margin: 0;
+                margin-top: 16px;
+
+                .headlineImg {
+                    width: 80px;
+                    vertical-align: middle;
+                }
+            }
+
+            .cate-wrap {
+                display: flex;
+                padding: 1rem;
+                width: 100%;
+                background-color: #fff;
+                margin: 0;
+                position: relative;
+                z-index: 9999;
+
+                &.on {
+                    position: fixed;
+                    border-bottom: $border;
+                }
+
+                .category {
+                    list-style: none;
+                    padding: 0px 32px;
+                    text-align: left;
+                    font-size: 14px;
+                    cursor: pointer;
+                    position: relative;
+
+                    &.on::after {
+                        position: absolute;
+                        content: '';
+                        display: block;
+                        bottom: -100%;
+                        left: 0;
+                        width: 100%;
+                        transform: translateY(-50%);
+                        height: 2px;
+                        background-color: #606060;
+                        transition: all ease 1500ms;
+                    }
+                }
+            }
+        }
+    }
+
+    .content-container {
+        padding-left: calc((100% - 1284px) / 2);
+
+        .content-wrap {
+            display: flex;
+            max-width: 862px;
+            gap: 1rem;
+            margin: 15px 0;
+
+            .thumbnail-wrap {
+                position: relative;
+
+                & a {
+                    display: inline-block;
+                    height: 100%;
+                    text-decoration: none;
+
+                    .content-thumbnail {
+                        width: 246px;
+                        height: 138px;
+                        border-radius: 10px;
+                        position: relative;
+                        z-index: -1;
+                    }
+
+                    .content-playtime {
+                        color: #fff;
+                        position: absolute;
+                        z-index: -1;
+                        right: 3px;
+                        bottom: 10px;
+                        background-color: #000;
+                        font-size: 12px;
+                        padding: 2px 4px;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                    }
+
+                    .play-btn {
+                        width: 40px;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        pointer-events: none;
+                        background: #fff;
+                        border-radius: 10px;
+                        padding: 5px;
+                        opacity: 70%;
+                    }
+                }
+            }
+
+            .content-data {
+                .title {
+                    @include text(18px, 500, #0f0f0f);
+                    @include clamp(hidden, -webkit-box, 2, vertical);
+                }
+
+                .channel-title {
+                    @include text(12px, 400, #606060);
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                    margin: 5px 0 10px;
+                }
+
+                .description {
+                    @include text(12px, 400, #606060);
+                    @include clamp(hidden, -webkit-box, 2, vertical);
+                }
+            }
+        }
+    }
+}

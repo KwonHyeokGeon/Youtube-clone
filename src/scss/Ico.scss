@@ -1,0 +1,10 @@
+$ico-size : 20px;
+$border : 1px solid #d3d3d3;
+
+@mixin clamp($over, $dp, $webline, $webbox) {
+  overflow: $over;
+  display: $dp;
+  -webkit-line-clamp: $webline;
+  -webkit-box-orient: $webbox;
+}
+
