@@ -2,13 +2,12 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-  },
-  getters: {
+    naviModal: false
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+    naviModalAction(state){
+      state.naviModal = !state.naviModal
+    }
+  } 
+
 })
