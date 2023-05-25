@@ -20,7 +20,7 @@
         </div>
         <div class="content-data">
           <p class="title">{{ e.snippet.title }}</p>
-          <p class="channel-title">{{ e.snippet.channelTitle }}<span>{{ Number(e.statistics.viewCount).toLocaleString()
+          <p class="channel-title mr-2">{{ e.snippet.channelTitle }}<span>{{ Number(e.statistics.viewCount).toLocaleString()
           }}회</span><span>•{{ getPublishedDate[index] }}</span></p>
           <p class="description">{{ e.snippet.description }}</p>
         </div>
