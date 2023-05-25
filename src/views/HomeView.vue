@@ -2,25 +2,27 @@
   <div class="mainHome">
     <div class="headline-container">
       <div class="headline-wrap">
-        <h2 class="headline" :style="{ display: scrollPosition > 107 ? 'none' : 'block' }"><img :src="require(`@/assets/fire.png`)" alt="인기 급상승" class="headlineImg">인기 급상승</h2>
+        <h2 class="headline" :style="{ display: scrollPosition > 107 ? 'none' : 'block' }"><img
+            :src="require(`@/assets/fire.png`)" alt="인기 급상승" class="headlineImg">인기 급상승</h2>
         <ul class="cate-wrap" :class="(scrollPosition > 107 && 'on')">
           <li v-for="(e, index) in cateList" :key="e" class="category" @click="clickCate(index)"
             :class="ClickIndex == index && 'on'">{{ e }}</li>
         </ul>
       </div>
     </div>
-    <div class="content-container" :style="{marginTop : scrollPosition > 107 ? '200px' : '0'}">
+    <div class="content-container" :style="{ marginTop: scrollPosition > 107 ? '200px' : '0' }">
       <div v-for="(e, index) in items" :key="index" class="content-wrap">
-        <div class="thumbnail-wrap" @mouseover="playIndex.push(index)" @mouseout="playIndex.pop()">
-          <a :href="`https://www.youtube.com/watch?v=${e.id}`" target="_blank">
-            <img :src="e.snippet.thumbnails.medium.url" alt="동영상" class="content-thumbnail">
-            <p class="content-playtime">{{ e.contentDetails.duration.replace("PT", "") }}</p>
-            <img :src="require(`@/assets/nav_ico/play.png`)" alt="플레이" class="play-btn" v-if="playIndex.includes(index)">
-          </a>
+        <div class="thumbnail-wrap" @mouseover="playVideo(index); play = 1">
+          <img :src="e.snippet.thumbnails.medium.url" alt="동영상" class="content-thumbnail">
+          <p class="content-playtime">{{ e.contentDetails.duration.replace("PT", "") }}</p>
+          <iframe class="preview" :src="`https://www.youtube.com/embed/${e.id}?autoplay=${play}&mute=1`"
+          v-if="showIdx === index && showVideo" @mouseout="showVideo = false; play = 0"></iframe>
         </div>
         <div class="content-data">
-          <p class="title">{{ e.snippet.title }}</p>
-          <p class="channel-title mr-2">{{ e.snippet.channelTitle }}<span>{{ Number(e.statistics.viewCount).toLocaleString()
+          <a :href="`https://www.youtube.com/watch?v=${e.id}`" target="_blank">
+            <p class="title">{{ e.snippet.title }}</p>
+          </a>
+          <p class="channel-title">{{ e.snippet.channelTitle }}<span>{{ Number(e.statistics.viewCount).toLocaleString()
           }}회</span><span>•{{ getPublishedDate[index] }}</span></p>
           <p class="description">{{ e.snippet.description }}</p>
         </div>
@@ -42,8 +44,10 @@ export default {
       publishedDate: "",
       cateId: 10,
       cateClick: false,
-      playIndex: [],
-      ClickIndex: 0
+      ClickIndex: 0,
+      showVideo: false,
+      showIdx: "",
+      play: null
     }
   },
   created() {
@@ -76,7 +80,7 @@ export default {
       }
 
       return result.slice(0, -2).split(",");
-    }
+    },
   },
   methods: {
     updateScrollPosition() {
@@ -107,6 +111,10 @@ export default {
             console.log(error);
           });
       }
+    },
+    playVideo(idx) {
+      this.showIdx = idx
+      this.showVideo = true
     }
   },
   mounted() {

@@ -6,7 +6,7 @@
 
 .mainHome {
     max-width: 1680px;
-    margin-left: 240px;
+    margin-left: 21%;
     margin-top: 56px;
     overflow: hidden;
 
@@ -38,7 +38,7 @@
                 background-color: #fff;
                 margin: 0;
                 position: relative;
-                z-index: 9999;
+                z-index: 9000;
 
                 &.on {
                     position: fixed;
@@ -55,7 +55,7 @@
 
                     &.on::after {
                         position: absolute;
-                        content: '';
+                        content: "";
                         display: block;
                         bottom: -100%;
                         left: 0;
@@ -82,44 +82,47 @@
             .thumbnail-wrap {
                 position: relative;
 
-                & a {
-                    display: inline-block;
-                    height: 100%;
-                    text-decoration: none;
+                .content-thumbnail {
+                    width: 246px;
+                    height: 138px;
+                    border-radius: 10px;
+                    position: relative;
+                    z-index: -1;
+                }
+                .preview {
+                    position: absolute;
+                    width: 246px;
+                    height: 138px;
+                    border-radius: 10px;
+                    top: 0;
+                    left: 0;
+                    z-index: 1000;
+                    background: #606060;
+                }
+                .content-playtime {
+                    color: #fff;
+                    position: absolute;
+                    z-index: -1;
+                    right: 3px;
+                    bottom: 10px;
+                    background-color: #000;
+                    font-size: 12px;
+                    padding: 2px 4px;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                }
 
-                    .content-thumbnail {
-                        width: 246px;
-                        height: 138px;
-                        border-radius: 10px;
-                        position: relative;
-                        z-index: -1;
-                    }
-
-                    .content-playtime {
-                        color: #fff;
-                        position: absolute;
-                        z-index: -1;
-                        right: 3px;
-                        bottom: 10px;
-                        background-color: #000;
-                        font-size: 12px;
-                        padding: 2px 4px;
-                        box-sizing: border-box;
-                        border-radius: 5px;
-                    }
-
-                    .play-btn {
-                        width: 40px;
-                        position: absolute;
-                        left: 50%;
-                        top: 50%;
-                        transform: translate(-50%, -50%);
-                        pointer-events: none;
-                        background: #fff;
-                        border-radius: 10px;
-                        padding: 5px;
-                        opacity: 70%;
-                    }
+                .play-btn {
+                    width: 40px;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    pointer-events: none;
+                    background: #fff;
+                    border-radius: 10px;
+                    padding: 5px;
+                    opacity: 70%;
                 }
             }
 
@@ -128,7 +131,10 @@
                     @include text(18px, 500, #0f0f0f);
                     @include clamp(hidden, -webkit-box, 2, vertical);
                 }
-
+                a{
+                    text-decoration: none;
+                }
+                
                 .channel-title {
                     @include text(12px, 400, #606060);
                     display: flex;
@@ -143,5 +149,10 @@
                 }
             }
         }
+    }
+}
+@media (max-width: 1300px) {
+    .mainHome {
+        margin-left: 10%;
     }
 }

@@ -2,7 +2,7 @@
   <div class="mainHeader">
     <div class="container">
       <div class="header-left">
-        <img :src="require(`@/assets/nav_ico/bars-solid.svg`)" alt="메뉴바" class="header-left_menu">
+        <img :src="require(`@/assets/nav_ico/bars-solid.svg`)" alt="메뉴바" class="header-left_menu" @click="naviModal">
         <a href="#">
           <img :src="require(`@/assets/nav_ico/logo.png`)" alt="로고" class="logo">
         </a>
@@ -33,11 +33,13 @@ export default {
   name: 'MainHeader',
   data() {
     return {
-      borderLine: false
+      borderLine: false,
     }
   },
   methods: {
-
+    naviModal(){
+      this.$store.commit('naviModalAction')
+    }
   }
 }
 </script>
@@ -69,6 +71,11 @@ export default {
         height: $ico-size;
         padding: 8px;
         cursor: pointer;
+
+        &:hover{
+          background-color: #f2f2f2;
+          border-radius: 15px;
+        }
       }
 
       .logo {
