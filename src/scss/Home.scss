@@ -133,14 +133,14 @@
                 }
                 a{
                     text-decoration: none;
-                    
-                    .channel-title {
-                        @include text(12px, 400, #606060);
-                        display: flex;
-                        gap: 10px;
-                        flex-wrap: wrap;
-                        margin: 5px 0 10px;
-                    }
+                }
+                
+                .channel-title {
+                    @include text(12px, 400, #606060);
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                    margin: 5px 0 10px;
                 }
 
                 .description {
