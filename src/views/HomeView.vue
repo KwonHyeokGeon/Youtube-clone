@@ -16,7 +16,7 @@
           <img :src="e.snippet.thumbnails.medium.url" alt="동영상" class="content-thumbnail">
           <p class="content-playtime">{{ e.contentDetails.duration.replace("PT", "") }}</p>
           <iframe class="preview" :src="`https://www.youtube.com/embed/${e.id}?autoplay=${play}&mute=1`"
-          v-if="showIdx === index && showVideo" @mouseout="showVideo = false; play = 0"></iframe>
+            v-if="showIdx === index && showVideo" @mouseout="showVideo = false; play = 0"></iframe>
         </div>
         <div class="content-data">
           <a :href="`https://www.youtube.com/watch?v=${e.id}`" target="_blank">
@@ -50,19 +50,6 @@ export default {
       play: null,
       appkey: process.env.VUE_APP_APIKEY
     }
-  },
-  created() {
-    axios
-      .get(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=KR&maxResults=50&key=${this.appkey}`)
-      .then((res) => {
-        this.items = res.data.items
-        for (let el in res.data.items) {
-          this.publishedAt.push(res.data.items[el].snippet.publishedAt)
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   },
   computed: {
     getPublishedDate() {
@@ -120,6 +107,17 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.updateScrollPosition)
+    axios
+      .get(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=KR&maxResults=50&key=${this.appkey}`)
+      .then((res) => {
+        this.items = res.data.items
+        for (let el in res.data.items) {
+          this.publishedAt.push(res.data.items[el].snippet.publishedAt)
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 }
 </script>
