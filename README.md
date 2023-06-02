@@ -32,6 +32,8 @@ Vuex
 Vue-router
 <br>
 Axios
+<br>
+dotenv
 
 ## 구현 기능
 
@@ -41,8 +43,8 @@ Axios
 각 썸네일에 마우스가 올라갔을 때 미리보기 제공, 사용자 경험을 해치지 않기 위해 영상 재생 시 음소거로 설정 
 ### 기능 3
 반응형 구현
-<br>
-
+### 기능 4
+API key 숨김처리
 
 <p align="justify">
 
