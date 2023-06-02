@@ -47,12 +47,13 @@ export default {
       ClickIndex: 0,
       showVideo: false,
       showIdx: "",
-      play: null
+      play: null,
+      appkey: process.env.VUE_APP_APIKEY
     }
   },
   created() {
     axios
-      .get(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=KR&maxResults=50&key=AIzaSyDVfxdI9NX12O7KJZ8-q1ftlFEUaFflG0M`)
+      .get(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=KR&maxResults=50&key=${this.appkey}`)
       .then((res) => {
         this.items = res.data.items
         for (let el in res.data.items) {
